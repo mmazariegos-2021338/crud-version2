@@ -2,33 +2,33 @@ import axios from "axios"
 import Swal from "sweetalert2"
 const URL = 'http://localhost:3000/api';
 
-export const getProducts = async () => {
+export const getHotel = async () => {
 
     try {
 
-        const { data: { listaProductos } } = await axios.get(`${URL}/productos/`)
+        const { data: { listaHotel } } = await axios.get(`${URL}/hotel/`)
 
-        console.log(listaProductos);
+        console.log(listaHotel);
 
-        return listaProductos;
+        return listaHotel;
 
     } catch (error) {
         console.log('Error en la peticion');
     }
 }
 
-export const postProduct = async (nombre, precio, descripcion, categoria) => {
+export const postHotel = async (nombre, direccion, evento) => {
 
     try {
-        const response = await axios.post(`${URL}/productos/agregar`, {
-            nombre, precio, descripcion, categoria
+        const response = await axios.post(`${URL}/hotel/agregar`, {
+            nombre, direccion, evento
         }, {headers: {"x-token": token}} 
         )
 
         if (response) {
             Swal.fire({
                 icon: "success",
-                title: "! Inicio de sesion completado !",
+                title: "! Felicidades a Agregado un Nuevo Hotel !",
                 text: "! Correcto !",
                 confirmButtonText: "Ok",
             })};
@@ -38,7 +38,7 @@ export const postProduct = async (nombre, precio, descripcion, categoria) => {
         } catch (error) { {response: {data: { msg }}}
             Swal.fire({
                 icon: "error",
-                title: "Error al iniciar sesion",
+                title: "Error no se pudo agregar",
                 text: `${ msg }`,
             });
             return false;

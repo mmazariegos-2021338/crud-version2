@@ -12,7 +12,7 @@ export const LoginPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const resultado = await login(correo, password);
-    resultado ? navigate('/products') : null
+    resultado ? navigate('/hotel') : null
   }
 
   return (
